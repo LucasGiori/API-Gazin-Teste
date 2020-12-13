@@ -1,0 +1,38 @@
+ 
+version: "3"
+
+
+services:
+
+  nginx:
+    image: nginx:latest
+    container_name: server-nginx
+    ports:
+      - "8081:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+
+  php-fpm:
+    build: ./docker/php7
+    container_name: php
+    links:
+      - db
+
+    environment:
+      - PHP_FPM_ENABLE=1
+      - PHP_FPM_SERVER_ADDR=php
+      - PHP_FPM_SERVER_PORT=9000
+
+    volumes:
+      - ./:/var/www/html
+
+  db:
+    image: postgres:12
+    container_name: crud
+    restart: always
+    ports:
+        - 5430:5432
+    environment:
+        - POSTGRES_PASSWORD=crud
+        - POSTGRES_DB=crud

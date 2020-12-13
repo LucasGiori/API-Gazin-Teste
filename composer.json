@@ -1,0 +1,28 @@
+{
+    "name": "lucasgiori/apigazin",
+    "authors": [
+        {
+            "name": "Lucas",
+            "email": "lucasgioricesconetto@gmail.com.br"
+        }
+    ],
+    "require": {
+        "symfony/dotenv": "^5.1",
+        "slim/slim": "^4.5",
+        "slim/psr7": "^1.2",
+        "symfony/serializer": "^5.2",
+        "symfony/property-access": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\":"src/"
+        }        
+    },
+    "scripts": {
+        "cli":"cd public && php index.php",
+        "server":"php -S localhost:8000 -t public/"
+    },
+    "config":{
+        "process-timeout":0
+    }
+}
